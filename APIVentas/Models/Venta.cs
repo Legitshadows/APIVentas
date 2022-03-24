@@ -33,6 +33,25 @@
             string jsonString = System.Text.Json.JsonSerializer.Serialize(listaVentas);
             System.IO.File.WriteAllText(fileName, jsonString);
         }
+
+        public static bool ActualizarVenta (string folio, Venta value)
+        {
+            bool resultado = false;
+            string fileName = @".\Models\Ventas.json";
+            List<Venta> listaVentas = ObtenerVentas().ToList();
+            Venta encontrado = listaVentas.Where(x => x.Folio == folio).SingleOrDefault();
+
+            if (encontrado != null)
+            {
+                encontrado.Fecha = value.Fecha;
+                encontrado.Cantidad = value.Cantidad;
+                encontrado.Total = value.Total;
+                string jsonString = System.Text.Json.JsonSerializer.Serialize(listaVentas);
+                System.IO.File.WriteAllText(fileName, jsonString);
+                resultado = true;
+            }
+            return resultado;
+        }
         #endregion
     }
 }

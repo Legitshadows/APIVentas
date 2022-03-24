@@ -32,5 +32,18 @@ namespace APIVentas.Controllers
         {
             Venta.AgregarVentas(value);
         }
+
+        [HttpPut("folio")]
+        public IActionResult Put(string folio, [FromBody] Venta value)
+        {
+            bool resultado = Venta.ActualizarVenta(folio, value);
+
+            if (!resultado)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
     }
 }
