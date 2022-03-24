@@ -45,5 +45,18 @@ namespace APIVentas.Controllers
 
             return Ok();
         }
+
+        [HttpDelete("folio")]
+        public IActionResult Delete(string folio)
+        {
+            bool resultado = Venta.EliminarVenta(folio);
+
+            if (!resultado)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
     }
 }

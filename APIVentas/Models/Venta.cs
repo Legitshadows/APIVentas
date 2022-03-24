@@ -52,6 +52,23 @@
             }
             return resultado;
         }
+
+        public static bool EliminarVenta(string folio)
+        {
+            bool resultado = false;
+            string fileName = @".\Models\Ventas.json";
+            List<Venta> listaVentas = ObtenerVentas().ToList();
+            Venta encontrado = listaVentas.Where(x => x.Folio == folio).SingleOrDefault();
+
+            if (encontrado != null)
+            {
+                listaVentas.Remove(encontrado);
+                string jsonString = System.Text.Json.JsonSerializer.Serialize(listaVentas);
+                System.IO.File.WriteAllText(fileName, jsonString);
+                resultado = true;
+            }
+            return resultado;
+        }
         #endregion
     }
 }
