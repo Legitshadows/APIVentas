@@ -10,6 +10,13 @@
         #endregion
 
         #region "Metodos"
+        public static IEnumerable<Venta> ObtenerVentas()
+        {
+            string fileName = @".\Models\Ventas.json";
+            string jsonString = System.IO.File.ReadAllText(fileName);
+            List<Venta> listaVentas = System.Text.Json.JsonSerializer.Deserialize<List<Venta>>(jsonString).ToList();
+            return listaVentas;
+        }
         #endregion
     }
 }
