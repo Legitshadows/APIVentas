@@ -26,5 +26,11 @@ namespace APIVentas.Controllers
 
             return Ok(encontrado);
         }
+
+        [HttpPost("APIVentas")]
+        public void Post([FromBody] Venta value)
+        {
+            Venta.AgregarVentas(value);
+        }
     }
 }

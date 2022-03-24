@@ -24,6 +24,15 @@
             Venta encontrado = listaVentas.Where(x => x.Folio == folio).SingleOrDefault();
             return encontrado;
         }
+
+        public static void AgregarVentas (Venta value)
+        {
+            string fileName = @".\Models\Ventas.json";
+            List<Venta> listaVentas = ObtenerVentas().ToList();
+            listaVentas.Add(value);
+            string jsonString = System.Text.Json.JsonSerializer.Serialize(listaVentas);
+            System.IO.File.WriteAllText(fileName, jsonString);
+        }
         #endregion
     }
 }
