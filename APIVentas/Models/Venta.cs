@@ -17,6 +17,13 @@
             List<Venta> listaVentas = System.Text.Json.JsonSerializer.Deserialize<List<Venta>>(jsonString).ToList();
             return listaVentas;
         }
+
+        public static Venta ObtenerVenta(string folio)
+        {
+            IEnumerable<Venta> listaVentas = ObtenerVentas();
+            Venta encontrado = listaVentas.Where(x => x.Folio == folio).SingleOrDefault();
+            return encontrado;
+        }
         #endregion
     }
 }
