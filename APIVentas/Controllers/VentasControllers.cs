@@ -27,12 +27,14 @@ namespace APIVentas.Controllers
             return Ok(encontrado);
         }
 
+        // POST: VentasControllers - Este Post sirve para crear una nueva entrada en el json siguiendo lo que tenemos en #Datos
         [HttpPost("APIVentas")]
         public void Post([FromBody] Venta value)
         {
             Venta.AgregarVentas(value);
         }
 
+        // PUT: VentasControllers - Este Put sirve para actualizar los datos dentro de nuestro json utilizando folio para saber cual queremos modificar
         [HttpPut("folio")]
         public IActionResult Put(string folio, [FromBody] Venta value)
         {
@@ -46,6 +48,7 @@ namespace APIVentas.Controllers
             return Ok();
         }
 
+        // DELETE: VentasControllers - Delete permite borrar entradas en el json mediante su # de folio
         [HttpDelete("folio")]
         public IActionResult Delete(string folio)
         {
